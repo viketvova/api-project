@@ -1,27 +1,19 @@
 import React, {useState} from "react";
-import {Table} from "./Table";
 import {Button} from "../Button/Button";
 
 function Banks() {
-    const [click, setClick] = useState(false)
-    const [bank, setBank] = useState(['Privat', 'NationalBank'])
 
-    const onClickHandler = () => {
-        setClick(!click)
-
-    }
-
-
+    const [bank, setBank] = useState([
+        {id: 1, name: 'Privat', show: false},
+        {id: 2, name: 'NationalBank', show: false}
+    ])
 
     return (
         <>
             <h1>Banks</h1>
-            <Button onClick={onClickHandler} bank={bank} />
-            {click ? <Table className='primary' /> : <Table className='hidden'/>}
-
-
-
+            <Button bank={bank}/>
         </>
     )
 }
+
 export default Banks

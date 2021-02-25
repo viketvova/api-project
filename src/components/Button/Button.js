@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React from "react";
+import {OneButton} from "./OneButtons";
 
 
 export function Button(props) {
@@ -8,12 +9,10 @@ export function Button(props) {
             {
                 props.bank.map(elem => {
                     return (
-                        <button onClick={props.onClick}>{elem}</button>
+                        <OneButton key={elem.id} {...elem} />
                     )
                 })
             }
-
-
         </>
     )
 }
