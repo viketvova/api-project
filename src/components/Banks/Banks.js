@@ -10,7 +10,7 @@ function Banks() {
 
     return (
         <>
-            <h1>Banks</h1>
+            <h1>API Banks</h1>
             <Button bank={bank}/>
         </>
     )
