@@ -17,7 +17,6 @@ export function NationalBank() {
         getApiBank();
     }, []);
 
-    console.log(cash)
 
     return (
         <>
