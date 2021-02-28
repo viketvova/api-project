@@ -8,6 +8,8 @@ import {Route, Switch} from "react-router-dom";
 import React from "react";
 import {Home} from "./components/Home/Home";
 import {Footer} from "./components/Footer/Footer";
+import {JS} from "./components/JS/JS"
+
 
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
         </ul>
         <Switch>
             <Route path='/banks' exact component={Banks}/>
+            <Route path='/js' exact component={JS} />
             <Route path='/translate' exact component={Translate}/>
             <Route path='/weather' exact component={Weather}/>
             <Route path='/' exact component={Home}/>
