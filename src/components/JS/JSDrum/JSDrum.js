@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import './JSDrum.css'
 import foo1 from './sounds/clap.wav'
 import foo2 from './sounds/hihat.wav'
@@ -24,27 +24,42 @@ export function JSDrum() {
         {id: 'o', arr: [79, 'tink', foo9]},
     ]
 
+
+    let [press, setPress] = useState(false)
+    let cls = ['key']
+    if(press === true) cls.push('playing')
+
+
+
     function useKeyPress(event) {
         keyboardObj.map(elem => {
             if (event.key === elem.id) {
                 let audio = new Audio(elem.arr[2])
                 return (function func() {
+                    setPress(true)
                     audio.currentTime = 0
                     audio.play()
-
                 })()
             } else {
                 return null
             }
         })
-    }
 
+    }
+    const upHandler = (event) => {
+        console.log(event.key)
+        keyboardObj.map(elem => {
+            if (event.key === elem.id) setPress(false)
+        })
+    }
 
     useEffect(() => {
         window.addEventListener('keydown', useKeyPress);
+        window.addEventListener('keyup', upHandler);
         // cleanup this component
         return () => {
             window.removeEventListener('keydown', useKeyPress);
+            window.addEventListener('keyup', upHandler);
         };
     }, []);
 
@@ -54,7 +69,7 @@ export function JSDrum() {
             <div className={'keys'}>
                 {keyboardObj.map((elem, index) => {
                     return (
-                        <div key={index} className={'key'} onClick={useKeyPress}>
+                        <div key={index} className={cls.join(" ")} onKeyPress={useKeyPress} onKeyUp={upHandler}>
                             <kbd>{elem.id}</kbd>
                             <span className="sound">{elem.arr[1]}</span>
                             <audio src={elem.arr[2]}></audio>
